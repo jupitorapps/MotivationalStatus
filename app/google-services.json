@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "417584006742",
+    "firebase_url": "https://motivationalstatus-ae50e.firebaseio.com",
+    "project_id": "motivationalstatus-ae50e",
+    "storage_bucket": "motivationalstatus-ae50e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:417584006742:android:3dc3d239228116f57addf7",
+        "android_client_info": {
+          "package_name": "com.motivation.statusforwhatsapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "417584006742-en3i0005b0m0i9alpb5e1o4hp92bc3b6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4nWfSeyEO-iT2m4nw7iPeMI77OjJjxXI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "417584006742-en3i0005b0m0i9alpb5e1o4hp92bc3b6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

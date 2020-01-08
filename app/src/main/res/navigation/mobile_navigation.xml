@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.motivation.statusforwhatsapp.Fragments.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_sports"
+        android:name="com.motivation.statusforwhatsapp.Fragments.SportsFragment"
+        android:label="@string/menu_sports"
+        tools:layout="@layout/fragment_sports" />
+
+    <fragment
+        android:id="@+id/nav_business"
+        android:name="com.motivation.statusforwhatsapp.Fragments.BusinessFragment"
+        android:label="@string/menu_business"
+        tools:layout="@layout/fragment_business" />
+
+    <fragment
+        android:id="@+id/nav_health"
+        android:name="com.motivation.statusforwhatsapp.Fragments.HealthFragment"
+        android:label="@string/menu_health"
+        tools:layout="@layout/fragment_health" />
+    <fragment
+        android:id="@+id/nav_exam"
+        android:name="com.motivation.statusforwhatsapp.Fragments.ExamFragment"
+        android:label="@string/menu_exam"
+        tools:layout="@layout/fragment_exam" />
+    <fragment
+        android:id="@+id/nav_fav"
+        android:name="com.motivation.statusforwhatsapp.Fragments.FavouritesFragment"
+        android:label="@string/action_fav"
+        tools:layout="@layout/fragment_favourites" />
+
+    <fragment
+        android:id="@+id/nav_share"
+        android:name="com.motivation.statusforwhatsapp.Fragments.ShareFragment"
+        android:label="@string/menu_share"
+        tools:layout="@layout/fragment_share" />
+
+    <fragment
+        android:id="@+id/nav_send"
+        android:name="com.motivation.statusforwhatsapp.Fragments.RateFragment"
+        android:label="@string/menu_rate"
+        tools:layout="@layout/fragment_rate" />
+</navigation>

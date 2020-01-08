@@ -1,0 +1,65 @@
+<resources>
+    <string name="app_name">Motivational Status</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Motivational Status</string>
+    <string name="nav_header_subtitle">Make 2020 Better</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_fav">Favourites</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_exam">Exam</string>
+    <string name="menu_business">Business</string>
+    <string name="menu_health">Health</string>
+    <string name="menu_sports">Sports</string>
+
+    <string name="menu_share">Share</string>
+    <string name="menu_rate">Rate App</string>
+
+    <string name="action_about">About</string>
+    <string name="about_app">This app was made as final project for my Android Developer Nanodegree at Udacity. Idea behind the app is to keep you motivated so that it help an inch in achieving you goal in 2020. \n
+
+\n Here are some more motivational quotes, \n
+
+1. If you want to achieve greatness stop asking for permission. \n —Anonymous \n
+
+2. Things work out best for those who make the best of how things work out. \n —John Wooden \n
+
+3. To live a creative life, we must lose our fear of being wrong. \n —Anonymous \n
+
+4. If you are not willing to risk the usual you will have to settle for the ordinary. \n --Jim Rohn \n
+
+5. Trust because you are willing to accept the risk, not because it is safe or certain. \n --Anonymous \n
+
+6. Take up one idea. Make that one idea your life--think of it, dream of it, live on that idea. Let the brain, muscles, nerves, every part of your body, be full of that idea, and just leave every other idea alone. This is the way to success. \n  --Swami Vivekananda \n
+
+7. All our dreams can come true if we have the courage to pursue them. \n  --Walt Disney \n
+
+8. Good things come to people who wait, but better things come to those who go out and get them. \n --Anonymous \n
+
+9. If you do what you always did, you will get what you always got. \n --Anonymous \n
+
+10. Success is walking from failure to failure with no loss of enthusiasm." \n --Winston Churchill \n
+
+Thank you guys, \n
+If you like the app , please consider to give a good rating in play store.</string>
+
+    <string name="quote_dummy_text">Never do tomorrow what you can do today. Procrastination is the thief of time</string>
+
+    <string name="author_name_demo">Author</string>
+
+    <string name="quote_category_demo">Category</string>
+    <string name="appwidget_text">Never do tomorrow what you can do today. Procrastination is the thief of time \n Pradeep Behera</string>
+    <string name="add_widget">Add widget</string>
+    <string name="share_app_message">Leadership is creating leaders. Share this app with your friends and motivate them towards success so that you create a leader.</string>
+    <string name="share_app_now">Share App Now</string>
+    <string name="rate_app_now">Rate App Now</string>
+    <string name="rate_app_text">A Five Star rating motivates us to work hard and give you best experince. We are addign new quotes regularly. Energize our efforts with a five star rating in PlayStore</string>
+    <string name="quote_background">Quote Background</string>
+    <string name="listen_quote">Listen Quote</string>
+    <string name="set_favourite">Set Favourite</string>
+    <string name="set_status">Set Status</string>
+    <string name="share_quote">Share Quote</string>
+    <string name="communicate">Communicate</string>
+
+</resources>

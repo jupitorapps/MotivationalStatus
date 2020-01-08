@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/menu_home_icon"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_sports"
+            android:icon="@drawable/menu_sports"
+            android:title="@string/menu_sports" />
+        <item
+            android:id="@+id/nav_business"
+            android:icon="@drawable/menu_business"
+            android:title="@string/menu_business" />
+        <item
+            android:id="@+id/nav_health"
+            android:icon="@drawable/menu_health"
+            android:title="@string/menu_health" />
+        <item
+            android:id="@+id/nav_exam"
+            android:icon="@drawable/menu_exam"
+            android:title="@string/menu_exam" />
+        <item
+            android:id="@+id/nav_fav"
+            android:icon="@drawable/fav_icon_red"
+            android:title="@string/action_fav" />
+    </group>
+
+    <item android:title="@string/communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="@string/menu_share" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/menu_rating"
+                android:title="@string/menu_rate" />
+        </menu>
+    </item>
+
+</menu>
