@@ -1,6 +1,8 @@
 package com.motivation.statusforwhatsapp.Fragments;
 
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,32 +22,33 @@ import java.util.Objects;
 
 public class HomeFragment extends Fragment {
 
-    private static final String TAG = "TAGG";
 
+    private static final String TAG = "TAGG";
+    private RecyclerView recyclerView;
+    private LinearLayoutManager linearLayoutManager;
+    private QuoteAdapter quoteAdapter;
+
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        RecyclerView recyclerView = root.findViewById(R.id.fragment_recyclerview);
+        linearLayoutManager = new LinearLayoutManager(getContext());
+        recyclerView = root.findViewById(R.id.fragment_recyclerview);
         ProgressBar progressBar = root.findViewById(R.id.progres_bar);
+
         recyclerView.setLayoutManager(linearLayoutManager);
-        QuoteAdapter quoteAdapter = new QuoteAdapter(getContext());
+        quoteAdapter = new QuoteAdapter(getContext());
         recyclerView.setAdapter(quoteAdapter);
-
-        progressBar = root.findViewById(R.id.progres_bar);
-
         ((MainActivity) Objects.requireNonNull(getContext())).loadQuotesFromNetwork(0, recyclerView, quoteAdapter, progressBar);
 
-
         return root;
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
     }
 
 

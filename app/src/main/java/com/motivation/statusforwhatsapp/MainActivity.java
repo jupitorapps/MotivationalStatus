@@ -25,12 +25,14 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.motivation.statusforwhatsapp.Adapters.QuoteAdapter;
 import com.motivation.statusforwhatsapp.Database.FavQuote;
 import com.motivation.statusforwhatsapp.Database.FavQuoteViewModel;
@@ -55,6 +57,8 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
     private ArrayList<FavQuote> quoteArrayList = new ArrayList<>();
     private InterstitialAd interstitialAd;
 
+    private FirebaseAnalytics firebaseAnalytics;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +67,8 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -95,6 +101,41 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
         interstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
         interstitialAd.loadAd(new AdRequest.Builder().build());
 
+        interstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                // Code to be executed when an ad finishes loading.
+            }
+
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                // Code to be executed when an ad request fails.
+            }
+
+            @Override
+            public void onAdOpened() {
+                // Code to be executed when the ad is displayed.
+            }
+
+            @Override
+            public void onAdClicked() {
+                // Code to be executed when the user clicks on an ad.
+                Bundle bundle = new Bundle();
+                bundle.putString("ad_click"," ad clicked");
+                firebaseAnalytics.logEvent(FirebaseAnalytics.Event.GENERATE_LEAD,bundle);
+            }
+
+            @Override
+            public void onAdLeftApplication() {
+                // Code to be executed when the user has left the app.
+            }
+
+            @Override
+            public void onAdClosed() {
+                // Code to be executed when the interstitial ad is closed.
+            }
+        });
+
     }
 
     public void showAdmobInterstitialAd() {
@@ -111,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
     }
 
 
-    public void loadQuotesFromNetwork(int catId, RecyclerView recyclerView, QuoteAdapter quoteAdapter,ProgressBar progressBar) {
+    public void loadQuotesFromNetwork(int catId, RecyclerView recyclerView, QuoteAdapter quoteAdapter, ProgressBar progressBar) {
 
         if (!progressBar.isShown()) {
             progressBar.setVisibility(View.VISIBLE);
