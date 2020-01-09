@@ -48,12 +48,11 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
 
-    private String TAG = "TAGG";
+    private final String TAG = "TAGG";
 
     private AppBarConfiguration mAppBarConfiguration;
 
     private TextToSpeech tts;
-    private String quoteToSpeak;
     private ArrayList<FavQuote> quoteArrayList = new ArrayList<>();
     private InterstitialAd interstitialAd;
 
@@ -84,9 +83,6 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-
-        FavQuoteViewModel favQuoteViewModel = ViewModelProviders.of(this).get(FavQuoteViewModel.class);
-
         tts = new TextToSpeech(this, this);
 
 
@@ -98,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
         });
 
         interstitialAd = new InterstitialAd(this);
-        interstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        interstitialAd.setAdUnitId(getString(R.string.admob_ad_unit_interstitial));
         interstitialAd.loadAd(new AdRequest.Builder().build());
 
         interstitialAd.setAdListener(new AdListener() {
@@ -144,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
             interstitialAd.loadAd(new AdRequest.Builder().build());
 
         } else {
-            Log.d("TAG", "The interstitial wasn't loaded yet.");
+            Log.d("TAG", getString(R.string.ad_not_loaded));
             interstitialAd.loadAd(new AdRequest.Builder().build());
         }
 
@@ -158,7 +154,6 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
             progressBar.setVisibility(View.VISIBLE);
         }
 
-
         ApiService apiService = ApiClient.getRetrofit().create(ApiService.class);
         //category_id = 3 to get Sports Quotes
         Call<ArrayList<FavQuote>> call = apiService.getQuote(catId);
@@ -168,12 +163,9 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
             public void onResponse(Call<ArrayList<FavQuote>> call, Response<ArrayList<FavQuote>> response) {
 
                 progressBar.setVisibility(View.GONE);
-                //Log.d(TAG, "onResponse: "+response.body());
                 quoteArrayList = response.body();
                 recyclerView.hasFixedSize();
                 quoteAdapter.loadQuotes(quoteArrayList);
-                // Log.d(TAG, "Total QUotes: " + quoteArrayList.size());
-
 
             }
 
@@ -193,8 +185,6 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
     protected void onPause() {
         super.onPause();
         updateAllWidgets();
-        Log.d(TAG, "onPause: ");
-
     }
 
     @Override
@@ -209,7 +199,6 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         if (item.getItemId() == R.id.action_about) {
-            Log.d(TAG, "onOptionsItemSelected: About selected");
             Intent intent = new Intent(this, AboutAppActivity.class);
             startActivity(intent);
         }
@@ -244,12 +233,12 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
 
             if (result == TextToSpeech.LANG_MISSING_DATA
                     || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                Toast.makeText(getApplicationContext(), "Language not supported", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), R.string.language_not_supported, Toast.LENGTH_SHORT).show();
             }  //   button.setEnabled(true);
 
 
         } else {
-            Toast.makeText(getApplicationContext(), "Init failed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.init_failed, Toast.LENGTH_SHORT).show();
 
         }
 
@@ -266,7 +255,6 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
 
                     @Override
                     public void run() {
-                        // Toast.makeText(getApplicationContext(), "Started" + keyword, Toast.LENGTH_SHORT).show();
 
                     }
                 });
@@ -275,8 +263,6 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
 
             @Override
             public void onDone(String utteranceId) {
-                Log.d(TAG, "onDone: Speak");
-
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -289,12 +275,10 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
 
             @Override
             public void onError(String utteranceId) {
-                Log.d(TAG, "onError: Speak");
-
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(getApplicationContext(), "Error in Speaking ", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), R.string.error_in_speaking, Toast.LENGTH_SHORT).show();
 
                     }
                 });
@@ -302,12 +286,11 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
             }
         });
 
-
         Bundle params = new Bundle();
         params.putString(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "");
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            tts.speak(quoteToSpeak, TextToSpeech.QUEUE_FLUSH, params, "Dummy String");
+            tts.speak(quoteToSpeak, TextToSpeech.QUEUE_FLUSH, params, getString(R.string.error_in_speaking));
         }
 
 

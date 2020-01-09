@@ -14,7 +14,6 @@
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
@@ -23,14 +22,13 @@
 
 
             <ImageView
-                android:id="@+id/expanded_image"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/bg3"
                 app:layout_collapseMode="parallax"
                 app:layout_collapseParallaxMultiplier="0.7"
-                android:contentDescription="TODO" />
+                android:contentDescription="@string/about_us_banner" />
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"

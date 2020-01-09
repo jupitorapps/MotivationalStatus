@@ -27,16 +27,15 @@ public class ShareFragment extends Fragment {
             public void onClick(View v) {
 
 
-                final String appUrl = "https://play.google.com/store/apps/details?id=" + Objects.requireNonNull(getActivity()).getPackageName();
+                final String appUrl = getString(R.string.playstore_url) + Objects.requireNonNull(getActivity()).getPackageName();
                 final Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
                 intent.putExtra(Intent.EXTRA_TEXT, appUrl + getString(R.string.share_app_message));
-                //  intent.putExtra(Intent.EXTRA_TEXT,"Enjoy the best app for Odia News, Install Now");
 
                 try {
-                    startActivity(Intent.createChooser(intent, "Select an action"));
+                    startActivity(Intent.createChooser(intent, getString(R.string.select_an_action)));
                 } catch (android.content.ActivityNotFoundException ex) {
-                    // (handle error)
+                    ex.printStackTrace();
                 }
 
 

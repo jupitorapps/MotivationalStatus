@@ -20,8 +20,6 @@ import java.util.Objects;
 
 public class BusinessFragment extends Fragment {
 
-    private static final String TAG = "TAGG";
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 

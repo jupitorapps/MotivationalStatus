@@ -26,7 +26,7 @@ public class RateFragment extends Fragment {
         rate_btton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String appUrl = "https://play.google.com/store/apps/details?id=" + Objects.requireNonNull(getActivity()).getPackageName();
+                final String appUrl = getString(R.string.playstore_url) + Objects.requireNonNull(getActivity()).getPackageName();
 
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse(appUrl));

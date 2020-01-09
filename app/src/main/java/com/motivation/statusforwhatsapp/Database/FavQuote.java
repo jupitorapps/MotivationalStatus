@@ -145,7 +145,7 @@ public class FavQuote implements Serializable {
         return quote;
     }
 
-    public void setQuote_name(String quote_name) {
+    public void setQuote_name(String quote) {
         this.quote = quote;
     }
 

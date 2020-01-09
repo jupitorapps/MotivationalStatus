@@ -3,7 +3,6 @@ package com.motivation.statusforwhatsapp.Adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -39,7 +38,6 @@ public class QuoteAdapter extends RecyclerView.Adapter<QuoteAdapter.QuotesViewHo
     private FavQuote currentQuote;
 
     private FavQuoteViewModel favQuoteViewModel;
-    private int id;
 
     private int[] fav_quote_id;
 
@@ -105,10 +103,6 @@ public class QuoteAdapter extends RecyclerView.Adapter<QuoteAdapter.QuotesViewHo
 
                 ((MainActivity)context).showAdmobInterstitialAd();
 
-                Bitmap bitmap = takeScreenshot(holder.itemView);
-
-                // Log.d(TAG, "onClick: Bitmap: " + bitmap);
-
                 Intent whatsappIntent = new Intent(Intent.ACTION_SEND);
                 whatsappIntent.setType("text/plain");
                 whatsappIntent.setPackage("com.whatsapp");
@@ -119,7 +113,7 @@ public class QuoteAdapter extends RecyclerView.Adapter<QuoteAdapter.QuotesViewHo
                     context.startActivity(whatsappIntent);
 
                 } catch (android.content.ActivityNotFoundException ex) {
-                    Toast.makeText(context, "WhatsApp not installed, please install WHatsApp to set status", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, context.getString(R.string.whatsapp_not_installed), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -167,7 +161,6 @@ public class QuoteAdapter extends RecyclerView.Adapter<QuoteAdapter.QuotesViewHo
         holder.listenIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick: Listen Button Clicked");
 
                 ((MainActivity)context).speakQuote(quotesList.get(position).getQuote()+"     "+quotesList.get(position).getAuthor());
 
@@ -182,11 +175,11 @@ public class QuoteAdapter extends RecyclerView.Adapter<QuoteAdapter.QuotesViewHo
                 intent.setType("text/plain");
                 intent.putExtra(Intent.EXTRA_TEXT, quotesList.get(position).getQuote() + "\n\n" + quotesList.get(position).getAuthor());
                 try {
-                    context.startActivity(Intent.createChooser(intent, "Select an action"));
+                    context.startActivity(Intent.createChooser(intent, context.getString(R.string.select_an_action)));
 
                 } catch (android.content.ActivityNotFoundException ex) {
                     // (handle error)
-                    Log.d(TAG, "Error in sharing Quote" + ex);
+                    Log.d(TAG, context.getString(R.string.error_in_sharing) + ex);
                 }
             }
         });
@@ -226,10 +219,4 @@ public class QuoteAdapter extends RecyclerView.Adapter<QuoteAdapter.QuotesViewHo
         }
     }
 
-
-    public Bitmap takeScreenshot(View view) {
-
-        view.setDrawingCacheEnabled(true);
-        return view.getDrawingCache();
-    }
 }

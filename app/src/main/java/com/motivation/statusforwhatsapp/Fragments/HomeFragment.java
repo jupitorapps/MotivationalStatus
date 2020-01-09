@@ -1,8 +1,6 @@
 package com.motivation.statusforwhatsapp.Fragments;
 
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,8 +20,6 @@ import java.util.Objects;
 
 public class HomeFragment extends Fragment {
 
-
-    private static final String TAG = "TAGG";
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
     private QuoteAdapter quoteAdapter;

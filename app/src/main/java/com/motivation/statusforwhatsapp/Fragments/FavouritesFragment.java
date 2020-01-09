@@ -23,7 +23,6 @@ import java.util.List;
 
 public class FavouritesFragment extends Fragment {
 
-    private static final String TAG = "TAGG";
     private ArrayList<FavQuote> quotesList = new ArrayList<>();
     private RecyclerView recyclerView;
     private QuoteAdapter quoteAdapter;

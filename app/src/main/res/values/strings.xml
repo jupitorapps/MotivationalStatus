@@ -1,10 +1,7 @@
 <resources>
     <string name="app_name">Motivational Status</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Motivational Status</string>
     <string name="nav_header_subtitle">Make 2020 Better</string>
-    <string name="nav_header_desc">Navigation header</string>
     <string name="action_fav">Favourites</string>
 
     <string name="menu_home">Home</string>
@@ -50,7 +47,6 @@ If you like the app , please consider to give a good rating in play store.</stri
 
     <string name="quote_category_demo">Category</string>
     <string name="appwidget_text">Never do tomorrow what you can do today. Procrastination is the thief of time \n Pradeep Behera</string>
-    <string name="add_widget">Add widget</string>
     <string name="share_app_message">Leadership is creating leaders. Share this app with your friends and motivate them towards success so that you create a leader.</string>
     <string name="share_app_now">Share App Now</string>
     <string name="rate_app_now">Rate App Now</string>
@@ -61,5 +57,19 @@ If you like the app , please consider to give a good rating in play store.</stri
     <string name="set_status">Set Status</string>
     <string name="share_quote">Share Quote</string>
     <string name="communicate">Communicate</string>
+    <string name="about_us_banner">About Us Banner</string>
+    <string name="make_a_favourite">Make a quote favourite to appear here</string>
+
+    <string name="category">Category</string>
+    <string name="author">Author</string>
+    <string name="whatsapp_not_installed">WhatsApp not installed, please install WHatsApp to set status</string>
+    <string name="select_an_action">Select an action</string>
+    <string name="error_in_sharing">Error in sharing Quote</string>
+    <string name="playstore_url">https://play.google.com/store/apps/details?id=</string>
+    <string name="admob_ad_unit_interstitial">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="ad_not_loaded">The interstitial wasn\'t loaded yet.</string>
+    <string name="language_not_supported">Language not supported</string>
+    <string name="init_failed">Init failed</string>
+    <string name="error_in_speaking">Error in Speaking</string>
 
 </resources>
