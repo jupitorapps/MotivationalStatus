@@ -38,6 +38,7 @@ import com.motivation.statusforwhatsapp.Database.FavQuote;
 import com.motivation.statusforwhatsapp.Database.FavQuoteViewModel;
 import com.motivation.statusforwhatsapp.Utils.ApiClient;
 import com.motivation.statusforwhatsapp.Utils.ApiService;
+import com.motivation.statusforwhatsapp.Utils.AppUtilities;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -57,6 +58,8 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
     private InterstitialAd interstitialAd;
 
     private FirebaseAnalytics firebaseAnalytics;
+
+    AppUtilities appUtilities = AppUtilities.getInstance();
 
 
     @Override
@@ -166,6 +169,7 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
                 quoteArrayList = response.body();
                 recyclerView.hasFixedSize();
                 quoteAdapter.loadQuotes(quoteArrayList);
+                appUtilities.setFavQuoteArrayList(quoteArrayList);
 
 
 
@@ -296,6 +300,11 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
         }
 
 
+    }
+
+
+    public void savePositions(int rvPosition){
+        appUtilities.setRecyclerviewposition(rvPosition);
     }
 
 }

@@ -42,10 +42,6 @@ public class HomeFragment extends Fragment {
 
         appUtilities = AppUtilities.getInstance();
 
-
-//        appUtilities.setRecyclerviewposition(((LinearLayoutManager)recyclerView.getLayoutManager()).findFirstVisibleItemPosition());
-
-
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -61,13 +57,9 @@ public class HomeFragment extends Fragment {
         quoteAdapter = new QuoteAdapter(getContext());
         recyclerView.setAdapter(quoteAdapter);
 
-        ((MainActivity) Objects.requireNonNull(getContext())).loadQuotesFromNetwork(0, recyclerView, quoteAdapter, progressBar);
+        if (savedInstanceState == null) {
 
-        if (savedInstanceState != null) {
-
-            recyclerView.getLayoutManager().scrollToPosition(recyclerViewScrollPosition);
-            Log.d(TAG, "onCreateView: Scroll Position: " + recyclerViewScrollPosition);
-            quoteAdapter.notifyDataSetChanged();
+            ((MainActivity) Objects.requireNonNull(getContext())).loadQuotesFromNetwork(0, recyclerView, quoteAdapter, progressBar);
 
         }
 
@@ -77,15 +69,25 @@ public class HomeFragment extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
-        appUtilities.setRecyclerviewposition(((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstVisibleItemPosition());
+        ((MainActivity) getContext()).savePositions(((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstVisibleItemPosition());
 
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        Log.d(TAG, "onResume: Rec Position: " + appUtilities.getRecyclerviewposition());
-        // ((LinearLayoutManager) recyclerView.getLayoutManager()).scrollToPosition(appUtilities.getRecyclerviewposition());
-        recyclerViewScrollPosition = appUtilities.getRecyclerviewposition();
+
+        if (appUtilities.getFavQuoteArrayList() != null && appUtilities.getRecyclerviewposition() != 0) {
+            recyclerView.getLayoutManager().scrollToPosition(appUtilities.getRecyclerviewposition());
+            recyclerViewScrollPosition = appUtilities.getRecyclerviewposition();
+
+            favQuoteArrayList = appUtilities.getFavQuoteArrayList();
+
+            quoteAdapter.loadQuotes(favQuoteArrayList);
+            quoteAdapter.notifyDataSetChanged();
+
+        }
+
+
     }
 }

@@ -1,11 +1,16 @@
 package com.motivation.statusforwhatsapp.Utils;
 
 
+import com.motivation.statusforwhatsapp.Database.FavQuote;
+
+import java.util.ArrayList;
+
 public class AppUtilities {
 
     private static AppUtilities _instance;
 
     private int recyclerviewposition;
+    private ArrayList<FavQuote> favQuoteArrayList;
 
 
     public AppUtilities() {
@@ -32,5 +37,11 @@ public class AppUtilities {
         this.recyclerviewposition = recyclerviewposition;
     }
 
+    public ArrayList<FavQuote> getFavQuoteArrayList() {
+        return favQuoteArrayList;
+    }
 
+    public void setFavQuoteArrayList(ArrayList<FavQuote> favQuoteArrayList) {
+        this.favQuoteArrayList = favQuoteArrayList;
+    }
 }
