@@ -24,21 +24,13 @@ import java.util.Objects;
 
 public class HomeFragment extends Fragment {
 
-    private final String TAG = "TAGG";
-
     private RecyclerView recyclerView;
-    private LinearLayoutManager linearLayoutManager;
     private QuoteAdapter quoteAdapter;
-    AppUtilities appUtilities;
-    private ArrayList<FavQuote> favQuoteArrayList = new ArrayList<>();
-
-    private int recyclerViewScrollPosition;
-
+    private AppUtilities appUtilities;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG, "onCreate: Fragment");
 
         appUtilities = AppUtilities.getInstance();
 
@@ -49,7 +41,7 @@ public class HomeFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        linearLayoutManager = new LinearLayoutManager(getContext());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView = root.findViewById(R.id.fragment_recyclerview);
         ProgressBar progressBar = root.findViewById(R.id.progres_bar);
 
@@ -69,7 +61,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
-        ((MainActivity) getContext()).savePositions(((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstVisibleItemPosition());
+        ((MainActivity) Objects.requireNonNull(getContext())).savePositions(((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstVisibleItemPosition());
 
     }
 
@@ -78,10 +70,9 @@ public class HomeFragment extends Fragment {
         super.onResume();
 
         if (appUtilities.getFavQuoteArrayList() != null && appUtilities.getRecyclerviewposition() != 0) {
-            recyclerView.getLayoutManager().scrollToPosition(appUtilities.getRecyclerviewposition());
-            recyclerViewScrollPosition = appUtilities.getRecyclerviewposition();
+            Objects.requireNonNull(recyclerView.getLayoutManager()).scrollToPosition(appUtilities.getRecyclerviewposition());
 
-            favQuoteArrayList = appUtilities.getFavQuoteArrayList();
+            ArrayList<FavQuote> favQuoteArrayList = appUtilities.getFavQuoteArrayList();
 
             quoteAdapter.loadQuotes(favQuoteArrayList);
             quoteAdapter.notifyDataSetChanged();
