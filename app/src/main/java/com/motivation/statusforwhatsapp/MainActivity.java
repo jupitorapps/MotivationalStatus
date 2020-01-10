@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
             public void onAdClicked() {
                 // Code to be executed when the user clicks on an ad.
                 Bundle bundle = new Bundle();
-                bundle.putString("ad_click"," ad clicked");
+                bundle.putString("ad_click",getString(R.string.ad_clicked));
                 firebaseAnalytics.logEvent(FirebaseAnalytics.Event.GENERATE_LEAD,bundle);
             }
 

@@ -71,5 +71,6 @@ If you like the app , please consider to give a good rating in play store.</stri
     <string name="language_not_supported">Language not supported</string>
     <string name="init_failed">Init failed</string>
     <string name="error_in_speaking">Error in Speaking</string>
+    <string name="ad_clicked">ad clicked</string>
 
 </resources>
