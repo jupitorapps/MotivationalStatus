@@ -1,6 +1,7 @@
 package com.motivation.statusforwhatsapp.Fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,21 +14,38 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.motivation.statusforwhatsapp.Adapters.QuoteAdapter;
+import com.motivation.statusforwhatsapp.Database.FavQuote;
 import com.motivation.statusforwhatsapp.MainActivity;
 import com.motivation.statusforwhatsapp.R;
+import com.motivation.statusforwhatsapp.Utils.AppUtilities;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class HomeFragment extends Fragment {
 
+    private final String TAG = "TAGG";
+
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
     private QuoteAdapter quoteAdapter;
+    AppUtilities appUtilities;
+    private ArrayList<FavQuote> favQuoteArrayList = new ArrayList<>();
+
+    private int recyclerViewScrollPosition;
 
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate: Fragment");
+
+        appUtilities = AppUtilities.getInstance();
+
+
+//        appUtilities.setRecyclerviewposition(((LinearLayoutManager)recyclerView.getLayoutManager()).findFirstVisibleItemPosition());
+
+
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -42,10 +60,32 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
         quoteAdapter = new QuoteAdapter(getContext());
         recyclerView.setAdapter(quoteAdapter);
+
         ((MainActivity) Objects.requireNonNull(getContext())).loadQuotesFromNetwork(0, recyclerView, quoteAdapter, progressBar);
+
+        if (savedInstanceState != null) {
+
+            recyclerView.getLayoutManager().scrollToPosition(recyclerViewScrollPosition);
+            Log.d(TAG, "onCreateView: Scroll Position: " + recyclerViewScrollPosition);
+            quoteAdapter.notifyDataSetChanged();
+
+        }
 
         return root;
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        appUtilities.setRecyclerviewposition(((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstVisibleItemPosition());
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume: Rec Position: " + appUtilities.getRecyclerviewposition());
+        // ((LinearLayoutManager) recyclerView.getLayoutManager()).scrollToPosition(appUtilities.getRecyclerviewposition());
+        recyclerViewScrollPosition = appUtilities.getRecyclerviewposition();
+    }
 }

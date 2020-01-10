@@ -167,6 +167,8 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
                 recyclerView.hasFixedSize();
                 quoteAdapter.loadQuotes(quoteArrayList);
 
+
+
             }
 
             @Override
